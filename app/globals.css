@@ -19,8 +19,90 @@
   }
 }
 
+.ticker-track {
+  width: max-content;
+  animation: tickerScroll 20s linear infinite;
+}
+
+@keyframes tickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes rotateCards {
+  0% {
+    transform: translateX(0) scale(1) rotate(0deg);
+    z-index: 3;
+    opacity: 1;
+  }
+
+  33% {
+    transform: translateX(40px) scale(0.9) rotate(8deg);
+    z-index: 2;
+  }
+
+  66% {
+    transform: translateX(-40px) scale(0.9) rotate(-8deg);
+    z-index: 1;
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateX(0) scale(1) rotate(0deg);
+    z-index: 3;
+    opacity: 1;
+  }
+}
+body {
+  overflow-x: hidden;
+}
+/* LEFT SCROLL */
+.ticker-left {
+  width: max-content;
+  animation: scrollLeft 60s linear infinite;
+  animation-play-state: running !important;
+  will-change: transform;
+}
+
+/* RIGHT SCROLL */
+.ticker-right {
+  width: max-content;
+  animation: scrollRight 60s linear infinite;
+  animation-play-state: running !important;
+  will-change: transform;
+}
+
+/* FORCE NO PAUSE ON HOVER */
+.ticker-left:hover,
+.ticker-right:hover {
+  animation-play-state: running !important;
+}
+
+/* KEYFRAMES */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }

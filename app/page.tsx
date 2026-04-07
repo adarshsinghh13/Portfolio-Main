@@ -3,6 +3,23 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Playfair_Display } from "next/font/google";
+import Image from "next/image";
+import Navbar from "./components/Navbar";
+import TopLeft from "./components/TopLeft";
+import Clock from "./Clock";
+import Showcase from "./Showcase";
+import InteractiveGlobe from "./InteractiveGlobe";
+import SkillsSection from "./components/SkillsSection";
+import Ticker from "./components/Ticker";
+import HeroSection from "./components/HeroSection";
+import Testimonials from "./components/Testimonials";
+import BehindSection from "./components/BehindSection";
+import HeroSection2 from "./components/HeroSection2";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import PageTransition from "./components/PageTransition";
+
+
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -10,10 +27,11 @@ const playfair = Playfair_Display({
 });
 
 export default function Home() {
+  const pathname = usePathname();
+  const [timezone, setTimezone] = useState("Asia/Kolkata");
   const text = "ADARSH";
   const [pos, setPos] = useState({ x: 0, y: 0 });
 
-  // Cursor glow
   useEffect(() => {
     const move = (e: MouseEvent) => {
       setPos({ x: e.clientX, y: e.clientY });
@@ -23,128 +41,349 @@ export default function Home() {
   }, []);
 
   return (
-    
-    <main className="relative min-h-screen bg-black text-white flex items-center justify-center px-6 overflow-hidden">
-      <div className="fixed top-6 right-6 z-50">
+  <>
+      <main className="relative min-h-screen bg-black text-white flex items-center justify-center px-6 overflow-hidden">
 
-  <div className="flex items-center gap-6 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/10 rounded-full shadow-lg">
+        {/* BACKGROUND GLOW */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-purple-600 opacity-20 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 animate-[pulse_6s_ease-in-out_infinite]" />
+        </div>
 
-    {/* Links */}
-    <div className="flex items-center gap-6 text-sm text-gray-300">
+        {/* TOP LEFT */}
+        <TopLeft />
 
-      <span className="px-4 py-1 bg-white text-black rounded-full">
-        Home
-      </span>
+        {/* NAVBAR */}
+<Navbar />
 
-      <a href="#about" className="hover:text-white transition">
-        About
-      </a>
+        {/* CURSOR GLOW */}
+        <div
+          className="pointer-events-none fixed w-[300px] h-[300px] bg-purple-600 opacity-20 blur-3xl rounded-full transition-all duration-300"
+          style={{
+            left: pos.x - 150,
+            top: pos.y - 150,
+          }}
+        />
 
-      <a href="#work" className="hover:text-white transition">
-        Projects
-      </a>
+        {/* HERO CONTENT */}
+        <div className="max-w-4xl text-center z-10">
 
-      <a href="#blogs" className="hover:text-white transition">
-        Blogs
-      </a>
+          {/* Small text */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-sm tracking-widest text-gray-400 mb-6"
+          >
+            CREATIVE DEVELOPER
+          </motion.p>
 
-      <a href="#" className="hover:text-white transition">
-        More
-      </a>
-    </div>
+          {/* NAME */}
+          <motion.h1
+            initial={{ opacity: 0, y: 80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="text-[90px] md:text-[150px] font-extrabold tracking-tight leading-none text-center"
+          >
+            {text}
+          </motion.h1>
 
-    {/* Right Side */}
-    <div className="flex items-center gap-3 ml-4">
+          {/* TAGLINE */}
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 1 }}
+            className="mt-4 text-3xl md:text-5xl font-semibold"
+          >
+            Crafting digital{" "}
+            <span className={`${playfair.className} text-gray-400`}>
+              experiences
+            </span>{" "}
+            that matter
+          </motion.h2>
 
-      {/* Button */}
-      <button className="px-4 py-1.5 bg-white text-black rounded-full text-sm hover:scale-105 transition">
-        Book a Call
-      </button>
+          {/* SUBTEXT */}
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 1 }}
+            className="mt-6 text-gray-400 max-w-2xl mx-auto"
+          >
+            I design and develop modern web applications that deliver seamless,
+            impactful user experiences.
+          </motion.p>
 
-    </div>
+          <div className="mt-8 flex justify-center gap-4">
+            <button className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition">
+              View My Work ↓
+            </button>
 
-  </div>
+            <button className="px-6 py-3 border border-gray-600 rounded-full hover:scale-105 transition">
+              Let's Talk
+            </button>
+          </div>
+        </div>
+
+        {/* BOTTOM LEFT */}
+        <div className="absolute bottom-6 left-6 z-50">
+          <div className="flex items-start gap-2">
+            <span className="text-green-500 text-lg">📍</span>
+
+            <div className="flex flex-col leading-tight">
+              <span className="text-white text-[12px] uppercase tracking-[0.15em]">
+                Based in Vadodara,
+              </span>
+              <span className="text-gray-500 text-[11px] uppercase tracking-[0.15em]">
+                India
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* BOTTOM RIGHT */}
+        <div className="absolute bottom-6 right-6 z-50 text-center">
+          <div className="flex justify-center mb-2">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-blue-500">
+              <path d="M12 3L3 8L12 13L21 8L12 3Z" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M3 12L12 17L21 12" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M3 16L12 21L21 16" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </div>
+
+          <div className="leading-tight">
+            <p className="text-white text-[12px] uppercase tracking-[0.15em]">
+              FULL STACK DEV,
+            </p>
+            <p className="text-gray-500 text-[11px] uppercase tracking-[0.15em]">
+              & DESIGNER
+            </p>
+          </div>
+        </div>
+
+      </main>
+      {/* ================= BENTO + CLOCK ================= */}
+      <div className="relative">
+        {/* ================= BENTO SECTION ================= */}
+        <section className=" bg-black py-16 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+
+          {/* LEFT CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="md:col-span-1 h-[520px] bg-white/[0.03] border border-white/10 rounded-4xl p-6 backdrop-blur-xl flex flex-col justify-between"
+          >
+            <div>
+              <h2 className="text-[26px] font-semibold">
+                Adarsh{" "}
+                <span className={`${playfair.className} italic text-gray-400`}>
+                  Singh
+                </span>
+              </h2>
+
+              <p className="mt-2 text-xs text-gray-500 uppercase tracking-widest">
+                Vadodara, IN
+              </p>
+            </div>
+
+            {/* IMAGES */}
+            <div className="relative flex justify-center items-center h-[180px]">
+              <img src="/img1.jpg" className="absolute left-0 w-20 h-32 rounded-xl rotate-[-15deg]" />
+              <img src="/img2.jpg" className="w-24 h-36 rounded-2xl z-10" />
+              <img src="/img3.jpg" className="absolute right-0 w-20 h-32 rounded-xl rotate-[15deg]" />
+            </div>
+
+            {/* SOCIAL ICONS */}
+            <div className="flex justify-center gap-6 text-gray-400">
+
+              {/* LinkedIn */}
+              <a href="#" className="hover:text-white transition">
+                <svg width="18" height="18" fill="currentColor">
+                  <path d="M16 0H2C.9 0 0 .9 0 2v12c0 1.1.9 2 2 2h14c1.1 
+        0 2-.9 2-2V2c0-1.1-.9-2-2-2zM5.3 13.5H2.7V6h2.6v7.5zM4 
+        4.9c-.8 0-1.4-.6-1.4-1.4S3.2 2 4 2s1.4.6 
+        1.4 1.4S4.8 4.9 4 4.9zM15.3 
+        13.5h-2.6v-3.6c0-.9-.3-1.5-1.1-1.5-.6 
+        0-1 .4-1.2.8-.1.2-.1.5-.1.8v3.5H7.7V6h2.5v1h.1c.3-.6 
+        1-1.4 2.4-1.4 1.8 0 3.1 1.2 3.1 3.7v4.2z" />
+                </svg>
+              </a>
+
+              {/* GitHub */}
+              <a href="#" className="hover:text-white transition">
+                <svg width="18" height="18" fill="currentColor">
+                  <path d="M9 0C4 0 0 4 0 9c0 4 2.6 7.4 6.2 
+        8.6.5.1.7-.2.7-.5v-1.7c-2.5.5-3-1.2-3-1.2-.4-1-.9-1.3-.9-1.3-.8-.5 
+        0-.5 0-.5.9.1 1.4.9 1.4.9.8 1.3 2.1.9 2.6.7.1-.6.3-1 
+        .6-1.2-2-.2-4-1-4-4.4 0-1 .4-1.9 
+        1-2.5-.1-.2-.4-1.2.1-2.5 0 0 .8-.3 
+        2.6 1 .8-.2 1.6-.3 2.4-.3s1.6.1 
+        2.4.3c1.8-1.3 2.6-1 2.6-1 .5 
+        1.3.2 2.3.1 2.5.6.6 1 1.5 1 
+        2.5 0 3.4-2 4.2-4 4.4.3.3.6.8.6 
+        1.6v2.3c0 .3.2.6.7.5C15.4 16.4 
+        18 13 18 9c0-5-4-9-9-9z"/>
+                </svg>
+              </a>
+
+              {/* Twitter */}
+              <a href="#" className="hover:text-white transition">
+                <svg width="18" height="18" fill="currentColor">
+                  <path d="M18 3a7.5 7.5 0 0 1-2.1.6 3.7 3.7 
+        0 0 0 1.6-2 7.4 7.4 0 0 1-2.3.9A3.7 
+        3.7 0 0 0 9.8 6c0 .3 0 .6.1.9A10.5 
+        10.5 0 0 1 2 2.6a3.7 3.7 0 0 0 1.1 
+        5A3.7 3.7 0 0 1 1.7 7v.1a3.7 3.7 
+        0 0 0 3 3.6c-.3.1-.7.2-1 .2-.2 
+        0-.5 0-.7-.1a3.7 3.7 0 0 0 3.5 
+        2.6A7.5 7.5 0 0 1 0 15.5a10.5 
+        10.5 0 0 0 5.7 1.7c6.8 0 10.5-5.6 
+        10.5-10.5v-.5A7.4 7.4 0 0 0 18 3z"/>
+                </svg>
+              </a>
+
+            </div>
+          </motion.div>
+
+          {/* CENTER CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="md:col-span-2 h-[520px] relative rounded-2xl border border-white/10 overflow-hidden"
+          >
+            {/* BG */}
+            <div className="absolute inset-0 bg-black" />
+            <div className="absolute right-0 w-1/2 h-full bg-purple-600/10 blur-[120px]" />
+
+            {/* CONTENT */}
+            <div className="relative z-10 p-12 flex flex-col h-full justify-start">
+
+              {/* TOP */}
+              <div className="flex justify-between text-xs text-gray-500 tracking-widest mb-10">
+                <span>DETAIL-DRIVEN UI</span>
+                <span>PHILOSOPHY ✦</span>
+              </div>
+
+              {/* MIDDLE */}
+              <div className="grid grid-cols-2 gap-10 items-start">
+
+                {/* LEFT */}
+                <div>
+                  <h2 className="text-4xl md:text-[42px] font-semibold leading-tight">
+                    Interfaces <br />
+                    <span className={`${playfair.className} italic text-gray-400 text-[28px] md:text-[32px]`}>
+                      you can feel.
+                    </span>
+                  </h2>
+
+                  <p className="mt-5 text-gray-400 text-[13px] leading-relaxed">
+                    I strive to create digital experiences that feel organic and human.
+                  </p>
+                </div>
+
+                {/* RIGHT */}
+                <div className="text-right">
+                  <div className="flex flex-wrap justify-end gap-2 mb-4">
+                    {["Motion", "Type", "Feedback", "Craft"].map((t, i) => (
+                      <span
+                        key={t}
+                        className={`px-3 py-1 text-xs rounded-full border ${i === 0
+                            ? "border-purple-500 text-purple-400"
+                            : "border-white/10 text-gray-300"
+                          }`}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="text-white text-sm font-medium">
+                    Micro-interactions
+                  </p>
+                  <p className="mt-6 text-gray-400 text-sm max-w-[320px]">
+                    Subtle movement that confirms intent — never distracting.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* RIGHT CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="md:col-span-1 h-[520px] bg-white/[0.03] border border-white/10 rounded-2xl p-6 flex flex-col justify-between"
+          >
+            {/* TOP */}
+            <div className="flex justify-between">
+              <div className="w-8 h-8 border border-white/10 rounded-full flex items-center justify-center">
+                <div className="w-2 h-2 bg-white rounded-full" />
+              </div>
+
+              <div className="flex items-center gap-2 text-xs px-3 py-1 border border-white/10 rounded-full">
+                <span className="w-2 h-2 bg-green-500 rounded-full" />
+                Available
+              </div>
+            </div>
+
+            {/* TEXT */}
+            <div>
+              <h2 className="text-2xl font-bold leading-tight">
+                LET’S BUILD <br />
+                SOMETHING <br />
+                <span className={`${playfair.className} italic text-gray-400`}>
+                  that works.
+                </span>
+              </h2>
+
+              <p className="mt-6 text-white font-medium">
+                hello@adarsh.dev
+              </p>
+            </div>
+
+            {/* BUTTON */}
+            <button className="w-full py-4 bg-white text-black rounded-full">
+              CONNECT NOW ↗
+            </button>
+          </motion.div>
+
+        </section>
+       {/* ================= TOP CUT ================= */}
+
+
+
+{/* ================= CLOCK SECTION ================= */}
+<div className="relative flex justify-center items-center -mt-40 -mb-40 z-20">
+
+  {/* GLOW BACKGROUND */}
+  <div className="absolute w-[500px] h-[500px] rounded-full 
+    bg-purple-700 opacity-10 blur-[120px]" />
+
+  {/* CLOCK */}
+  
 
 </div>
 
-      {/* Cursor Glow */}
-      <div
-        className="pointer-events-none fixed w-[300px] h-[300px] bg-purple-600 opacity-20 blur-3xl rounded-full transition-all duration-300"
-        style={{
-          left: pos.x - 150,
-          top: pos.y - 150,
-        }}
-      />
 
-      {/* Center Glow */}
-      <div className="absolute w-[600px] h-[600px] bg-purple-600 opacity-20 blur-[120px] rounded-full"></div>
+{/* ================= BOTTOM CUT ================= */}
+<div className="" >
 
-      <div className="max-w-4xl text-center z-10">
+</div>
+<div className="mt-69">
 
-        {/* Small text */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-sm tracking-widest text-gray-400 mb-6"
-        >
-          CREATIVE DEVELOPER
-        </motion.p>
+    <Showcase />
+    <SkillsSection />
+    <Ticker />
+    <HeroSection />
+    <Testimonials />
+    <BehindSection />
+    <HeroSection2 />
 
-        {/* LETTER ANIMATION */}
-        <motion.h1
-  initial={{ opacity: 0, y: 80 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{
-    duration: 0.7,
-    ease: "easeOut",
-  }}
-  className="text-[90px] md:text-[150px] font-extrabold tracking-tight leading-none text-center"
->
-  ADARSH
-</motion.h1>
+</div>
 
-        {/* Tagline */}
-        <motion.h2
-  initial={{ opacity: 0, y: 40 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.8, duration: 1 }}
-  className="mt-4 text-3xl md:text-5xl font-semibold"
->
-  Crafting digital{" "}
-  <span className={`${playfair.className} text-gray-400`}>
-    experiences
-  </span>{" "}
-  that matter
-</motion.h2>
-
-        {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 1 }}
-          className="mt-6 text-gray-400 max-w-2xl mx-auto"
-        >
-          I design and develop modern web applications that deliver seamless, impactful user experiencess.
-        </motion.p>
-
-        {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="mt-8 flex justify-center gap-4"
-        >
-          <button className="px-6 py-3 bg-white text-black rounded-full hover:scale-105 transition duration-300">
-            View My Work ↓
-          </button>
-
-          <button className="px-6 py-3 border border-gray-600 rounded-full hover:scale-105 transition duration-300">
-            Let's Talk
-          </button>
-        </motion.div>
 
       </div>
-    </main>
-  );
+</>
+);
 }
