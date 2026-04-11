@@ -2,6 +2,31 @@
 
 import Image from "next/image";
 import CubeHero from "./CubeHero";
+import Link from "next/link";
+
+<div>
+  <h3 className="text-white/50 mb-4">About</h3>
+
+  <ul className="space-y-2">
+    <li>
+      <Link href="/about" className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition">
+        About Me
+      </Link>
+    </li>
+
+    <li>
+      <Link href="/projects" className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition">
+        Projects
+      </Link>
+    </li>
+
+    <li>
+      <Link href="/contact" className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition">
+        Contact
+      </Link>
+    </li>
+  </ul>
+</div>
 
 export default function Hero() {
   return (
@@ -57,32 +82,83 @@ export default function Hero() {
   <div className="grid grid-cols-2 md:grid-cols-3 gap-10 text-sm">
 
     {/* GENERAL */}
-    <div>
-      <h3 className="text-white/50 mb-4">General</h3>
-      <ul className="space-y-2">
-  <li className="text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition cursor-pointer">Home</li>
-  <li className="text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition cursor-pointer">Blogs</li>
-  <li className="text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition cursor-pointer">Guestbook</li>
-  <li className="text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition cursor-pointer">Uses</li>
-</ul>
-    </div>
+  
+
+<div>
+  <h3 className="text-white/50 mb-4">General</h3>
+
+  <ul className="space-y-2">
+    <li>
+      <Link
+        href="/"
+        className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition"
+      >
+        Home
+      </Link>
+    </li>
+
+    <li>
+      <Link
+        href="/blogs"
+        className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition"
+      >
+        Blogs
+      </Link>
+    </li>
+
+    <li>
+      <Link
+        href="/uses"
+        className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition"
+      >
+        Uses
+      </Link>
+    </li>
+  </ul>
+</div>
 
     {/* ABOUT */}
-    <div>
-      <h3 className="text-white/50 mb-4">About</h3>
-      <ul className="space-y-2">
-  <li className="text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition cursor-pointer">About Me</li>
-  <li className="text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition cursor-pointer">Projects</li>
-  <li className="text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition cursor-pointer">Contact</li>
-</ul>
-    </div>
+
+
+<div>
+  <h3 className="text-white/50 mb-4">About</h3>
+
+  <ul className="space-y-2">
+    <li>
+      <Link href="/about" className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition">
+        About Me
+      </Link>
+    </li>
+
+    <li>
+      <Link href="/projects" className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition">
+        Projects
+      </Link>
+    </li>
+
+    <li>
+     <Link href="/book-call" className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition">
+  Contact
+</Link>
+    </li>
+  </ul>
+</div>
 
     {/* LEGAL (no startup as you requested) */}
     <div>
       <h3 className="text-white/50 mb-4">Legal</h3>
       <ul className="space-y-2">
-  <li className="text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition cursor-pointer">Privacy Policy</li>
-  <li className="text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition cursor-pointer">Terms & Conditions</li>
+  
+ 
+
+<li>
+  <Link
+    href="/terms"
+    className="block text-white text-[15px] font-medium tracking-tight hover:text-white/70 transition"
+  >
+    Terms & Conditions
+  </Link>
+</li>
 </ul>
     </div>
     
@@ -99,19 +175,39 @@ export default function Hero() {
   {/* RIGHT ICONS */}
   <div className="flex items-center gap-5 text-white/60">
 
-    <a href="#" className="hover:text-white transition">
+    <a 
+    href="https://github.com/adarshsinghh13" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
       <i className="ri-github-line text-lg"></i>
     </a>
 
-    <a href="#" className="hover:text-white transition">
+    <a 
+    href="https://linkedin.com/in/adarshsinghh13" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
       <i className="ri-linkedin-line text-lg"></i>
     </a>
 
-    <a href="#" className="hover:text-white transition">
+    <a 
+    href="https://twitter.com/adarshsinghh13" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
       <i className="ri-twitter-x-line text-lg"></i>
     </a>
 
-    <a href="#" className="hover:text-white transition">
+    <a 
+    href="https://www.instagram.com/_adarshh13_?igsh=eGtxanRnd3l1MW00" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
       <i className="ri-instagram-line text-lg"></i>
     </a>
 

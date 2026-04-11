@@ -3,6 +3,7 @@ import { Inter, Playfair_Display, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import TopLeft from "./components/TopLeft";
+import Providers from "./providers"; // 👈 ADD THIS
 
 /* FONTS */
 const dancing = Dancing_Script({
@@ -45,9 +46,11 @@ export default function RootLayout({
       </head>
 
       <body className={`${dancing.variable} bg-black text-white`}>
-        <Navbar />
-        <TopLeft />
-        {children}
+        <Providers> {/* 👈 WRAP EVERYTHING */}
+          <Navbar />
+          <TopLeft />
+          {children}
+        </Providers>
       </body>
     </html>
   );

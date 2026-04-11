@@ -2,10 +2,32 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
+import { Monitor, Book } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
+
+  const [showMore, setShowMore] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleClick = () => setShowMore(false);
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
+  }, []);
+
+  const openMenu = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setShowMore(true);
+  };
+
+  const closeMenu = () => {
+    timeoutRef.current = setTimeout(() => {
+      setShowMore(false);
+    }, 180);
+  };
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -19,14 +41,15 @@ export default function Navbar() {
 
     setTimeout(() => {
       router.push(path);
-    }, 600); // ⏱ match animation duration
+    }, 600);
   };
 
   return (
     <div className="fixed top-4 right-4 z-50">
-      <div className="flex items-center gap-6 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/10 rounded-full shadow-lg">
+      <div className="flex items-center gap-2 px-2 py-1.5 bg-white/10 backdrop-blur-md border border-white/10 rounded-full shadow-lg">
 
-        <div className="flex items-center gap-2 text-sm">
+        {/* NAV ITEMS */}
+        <div className="flex items-center gap-2 text-sm relative">
           {navItems.map((item) => {
             const isActive = pathname === item.path;
 
@@ -34,17 +57,12 @@ export default function Navbar() {
               <button
                 key={item.name}
                 onClick={() => handleNavigation(item.path)}
-                className="relative px-4 py-1.5 rounded-full overflow-hidden group"
+                className="relative px-3 py-1 rounded-full overflow-hidden group"
               >
-                {/* HOVER */}
-                <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition duration-300 rounded-full" />
-
-                {/* ACTIVE */}
                 {isActive && (
-                  <span className="absolute inset-0 bg-white rounded-full" />
+                  <span className="absolute inset-0 bg-white/60 backdrop-blur-sm rounded-full border border-white/60" />
                 )}
 
-                {/* TEXT */}
                 <span
                   className={`relative z-10 transition ${
                     isActive
@@ -54,22 +72,70 @@ export default function Navbar() {
                 >
                   {item.name}
                 </span>
-
-                {/* GLOW */}
-                <span className="absolute inset-0 rounded-full blur-md bg-white/20 opacity-0 group-hover:opacity-40 transition duration-300" />
               </button>
             );
           })}
+
+          {/* MORE BUTTON */}
+          <button
+            onMouseEnter={openMenu}
+            onMouseLeave={closeMenu}
+            className="px-3 py-1 rounded-full text-xs bg-white/10 hover:bg-white/20 transition text-gray-300"
+          >
+            More ▾
+          </button>
         </div>
 
+        {/* CTA */}
         <Link
-  href="/book-call"
-  className="px-4 py-1.5 bg-white text-black rounded-full text-sm hover:scale-105 transition"
->
-  Book a Call
-</Link>
-
+          href="/book-call"
+          className="px-3 py-1 bg-white text-black rounded-full text-xs hover:scale-105 transition"
+        >
+          Book a Call
+        </Link>
       </div>
+
+      {/* DROPDOWN */}
+      {showMore && (
+        <div
+          onMouseEnter={openMenu}
+          onMouseLeave={closeMenu}
+          onClick={(e) => e.stopPropagation()}
+          className="absolute top-14 right-0 w-[300px] bg-[#0b0b0b] border border-white/10 rounded-xl p-3 shadow-xl backdrop-blur-md"
+        >
+          <div className="grid grid-cols-2 gap-3">
+
+            <Link href="/uses">
+              <div className="flex flex-col items-start gap-2 p-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition cursor-pointer">
+                <div className="w-8 h-8 flex items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                  <Monitor size={18} className="text-white/80" />
+                </div>
+                <div>
+                  <p className="text-xs font-medium">Uses</p>
+                  <p className="text-[10px] text-gray-400">
+                    DevTools, AI & Socials
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/guestbook">
+              <div className="flex flex-col items-start gap-2 p-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition cursor-pointer">
+                <div className="w-8 h-8 flex items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                  <Book size={18} className="text-white/80" />
+                </div>
+                <div>
+                  <p className="text-xs font-medium">Guestbook</p>
+                  <p className="text-[10px] text-gray-400">
+                    Sign my wall
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -11,6 +11,11 @@ const projects = [
     title: " CodeStruct",
     desc: "CodeStruct is a full-stack DSA learning platform that helps users understand concepts through visualization, practice problems, and interactive features. Built with a focus on performance, scalability, and user experience.",
     gradient: "from-red-500 to-red-700",
+     images: [
+      "/projects/codestruct1.png",
+      "/projects/codestruct2.png",
+      "/projects/codestruct3.png",
+    ],
   },
   {
     id: 2,

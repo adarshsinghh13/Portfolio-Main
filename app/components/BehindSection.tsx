@@ -1,8 +1,12 @@
 "use client";
 
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 export default function BehindSection() {
+  const router = useRouter();
   return (
     <section className="bg-black text-white py-32 px-6 md:px-16">
 
@@ -46,9 +50,27 @@ export default function BehindSection() {
 
           {/* SOCIAL ICONS */}
           <div className="flex gap-4 mt-6 text-white/60 text-lg">
-            <a href="#" target="_blank"><FaGithub /></a>
-            <a href="#" target="_blank"><FaLinkedin /></a>
-            <a href="#" target="_blank"><FaTwitter /></a>
+            <a 
+    href="https://github.com/adarshsinghh13" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
+<FaGithub /></a>
+            <a 
+    href="https://linkedin.com/in/adarshsinghh13" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
+<FaLinkedin /></a>
+            <a 
+    href="https://twitter.com/adarshsinghh13" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
+<FaTwitter /></a>
           </div>
         </div>
 
@@ -56,7 +78,7 @@ export default function BehindSection() {
         <div className="relative bg-[#0b0b0b] border border-white/10 rounded-2xl p-8 flex flex-col justify-between overflow-hidden hover:border-white/20 transition">
 
           {/* glow */}
-          <div className="absolute bottom-0 right-0 w-40 h-40 bg-orange-500/20 blur-3xl" />
+          <div className="absolute bottom-0 right-0 w-40 h-40 bg-orange-500/20 blur-3xl pointer-events-none" />
 
           <div>
             <p className="text-xs text-white/50 tracking-widest mb-4">
@@ -85,9 +107,14 @@ export default function BehindSection() {
             </div>
 
             {/* BUTTON */}
-            <button className="px-6 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 transition shadow-[0_0_20px_rgba(255,140,0,0.3)]">
-              Sign Guestbook →
-            </button>
+            
+
+<button
+  onClick={() => router.push("/guestbook")}
+  className="px-6 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 transition shadow-[0_0_20px_rgba(255,140,0,0.3)]"
+>
+  Sign Guestbook →
+</button>
 
           </div>
         </div>

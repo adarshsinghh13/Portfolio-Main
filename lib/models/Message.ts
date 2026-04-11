@@ -1,0 +1,13 @@
+import mongoose from "mongoose";
+
+const MessageSchema = new mongoose.Schema(
+  {
+    name: String,
+    image: String,
+    message: String,
+  },
+  { timestamps: true } // ✅ THIS IS REQUIRED
+);
+
+export default mongoose.models.Message ||
+  mongoose.model("Message", MessageSchema);

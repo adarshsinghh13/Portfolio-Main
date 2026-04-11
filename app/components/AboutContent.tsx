@@ -62,7 +62,12 @@ export default function AboutContent() {
             <div className="flex justify-center gap-6 text-gray-400">
 
               {/* LinkedIn */}
-              <a href="#" className="hover:text-white transition">
+              <a 
+    href="https://linkedin.com/in/adarshsinghh13" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
                 <svg width="18" height="18" fill="currentColor">
                   <path d="M16 0H2C.9 0 0 .9 0 2v12c0 1.1.9 2 2 2h14c1.1 
         0 2-.9 2-2V2c0-1.1-.9-2-2-2zM5.3 13.5H2.7V6h2.6v7.5zM4 
@@ -75,7 +80,12 @@ export default function AboutContent() {
               </a>
 
               {/* GitHub */}
-              <a href="#" className="hover:text-white transition">
+              <a 
+    href="https://github.com/adarshsinghh13" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
                 <svg width="18" height="18" fill="currentColor">
                   <path d="M9 0C4 0 0 4 0 9c0 4 2.6 7.4 6.2 
         8.6.5.1.7-.2.7-.5v-1.7c-2.5.5-3-1.2-3-1.2-.4-1-.9-1.3-.9-1.3-.8-.5 
@@ -92,7 +102,12 @@ export default function AboutContent() {
               </a>
 
               {/* Twitter */}
-              <a href="#" className="hover:text-white transition">
+              <a 
+    href="https://twitter.com/adarshsinghh13" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="hover:text-white transition"
+  >
                 <svg width="18" height="18" fill="currentColor">
                   <path d="M18 3a7.5 7.5 0 0 1-2.1.6 3.7 3.7 
         0 0 0 1.6-2 7.4 7.4 0 0 1-2.3.9A3.7 
@@ -110,13 +125,7 @@ export default function AboutContent() {
             </div>
 
   {/* BUTTON */}
-  <button className="flex items-center gap-3 text-sm text-white group w-fit">
-    Dive in deeper
-
-    <span className="w-7 h-7 flex items-center justify-center border border-white/20 rounded-full transition-all duration-300 group-hover:translate-x-1 group-hover:border-white">
-      →
-    </span>
-  </button>
+ 
 
 </div>
         </motion.div>
