@@ -13,7 +13,9 @@ export default function TopLeft() {
       style={{ opacity }}
       className="fixed top-6 left-6 flex items-center gap-3 text-xs z-50"
     >
-      <span className="font-semibold text-white">AD</span>
+      <span className="font-semibold bg-gradient-to-r from-gray-400 via-gray-200 to-gray-500 text-transparent bg-clip-text tracking-wide">
+  AS
+</span>
       <span className="text-gray-600">|</span>
 
       <div className="flex flex-col gap-[2px] text-gray-400">
