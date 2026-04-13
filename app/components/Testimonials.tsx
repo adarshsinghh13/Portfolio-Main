@@ -20,11 +20,41 @@ const testimonials = [
     img: "/behind3.jpg",
   },
   {
-    name: "Aditya Mehta",
+    name: "Aditya Adhikari",
     role: "Product Manager",
     text: "GREAT COLLABORATION AND EXECUTION. DELIVERS HIGH-QUALITY RESULTS CONSISTENTLY.",
     img: "/behind4.jpg",
   },
+  {
+  name: "Karan Patel",
+  role: "Full Stack Developer, Accenture",
+  text: "BROUGHT CREATIVE SOLUTIONS WITH CLEAR COMMUNICATION.",
+  img: "/behind5.jpg",
+},
+{
+  name: "Priya Mehta",
+  role: "Project Manager, Wipro",
+  text: "SHOWED GREAT OWNERSHIP AND PROACTIVE PROBLEM SOLVING.",
+  img: "/behind6.jpg",
+},
+{
+  name: "Amit Kulkarni",
+  role: "Engineering Manager, Cognizant",
+  text: "CONSISTENT DELIVERY WITH HIGH-QUALITY WORK.",
+  img: "/behind7.jpg",
+},
+{
+  name: "Neha Gupta",
+  role: "Data Analyst, Deloitte",
+  text: "HANDLED COMPLEX TASKS WITH CONFIDENCE.",
+  img: "/behind8.jpg",
+},
+{
+  name: "Rohit Verma",
+  role: "Senior Software Engineer, TCS",
+  text: "DELIVERED CONSISTENT RESULTS WITH STRONG TECHNICAL CLARITY.",
+  img: "/behind9.jpg",
+},
 ];
 
 export default function Testimonials() {

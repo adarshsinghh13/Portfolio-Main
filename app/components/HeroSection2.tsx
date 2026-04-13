@@ -30,13 +30,13 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen bg-black px-6 md:px-16 lg:px-24 flex flex-col justify-center">
+    <section className="min-h-screen bg-black px-6 md:px-16 lg:px-24 flex flex-col justify-between">
 
       {/* TOP ROW */}
       <div className="flex items-center justify-between w-full">
 
         {/* LEFT (TEXT) */}
-        <div className="flex flex-col gap-6 max-w-4xl">
+        <div className="flex flex-col gap-3 max-w-4xl">
           
           <div className="flex items-center gap-4">
             <Image
@@ -52,7 +52,7 @@ export default function Hero() {
             </h1>
           </div>
 
-          <h1 className="text-[42px] md:text-[72px] font-semibold text-white/40 tracking-tight">
+          <h1 className="text-[42px] md:text-[72px] font-semibold tracking-tight bg-gradient-to-r from-gray-300 via-gray-400 to-gray-200 text-transparent bg-clip-text">
             something real.
           </h1>
         </div>
@@ -165,7 +165,7 @@ export default function Hero() {
 
   </div>
 </div>
-<div className="mt-10 mb-10 border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 -mx-6 md:-mx-16 lg:-mx-24 px-6 md:px-16 lg:px-24">
+<div className="mt-10 pb-2 border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 -mx-6 md:-mx-16 lg:-mx-24 px-6 md:px-16 lg:px-24">
 
   {/* LEFT TEXT */}
   <p className="text-white/40 text-xs tracking-tight">

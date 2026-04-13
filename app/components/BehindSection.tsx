@@ -163,7 +163,7 @@ export default function BehindSection() {
             </h3>
 
             <p className="text-xs text-white/50 mt-2">
-              The 1975 • Song
+              The 1975 • Album
             </p>
 
             <p className="text-s text-green-400 mt-3">

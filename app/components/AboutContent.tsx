@@ -23,11 +23,11 @@ export default function AboutContent() {
           </p>
 
           {/* HEADING */}
-          <h2 className="text-[56px] md:text-[50px] font-semibold leading-[1.05] tracking-tight">
+          <h2 className="text-[56px] md:text-[48px] font-semibold leading-[1.05] tracking-tight">
             Nice to meet you.
             <br />
             I'm{" "}
-            <span className="italic bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 text-transparent bg-clip-text">
+            <span className="italic bg-gradient-to-r from-gray-300 via-gray-400 to-gray-200 text-transparent bg-clip-text">
               Adarsh
             </span>
           </h2>
