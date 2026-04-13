@@ -1,16 +1,57 @@
 "use client";
+
 import Image from "next/image";
-import BookingSection from "../components/BookingSection";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
+import BookingSection from "../components/BookingSection";
 import BehindSection from "../components/BehindSection";
 import HeroSection2 from "../components/HeroSection2";
+import toast from "react-hot-toast";
 
 export default function BookCallPage() {
   const [view, setView] = useState<"booking" | "contact">("booking");
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e: any) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    emailjs
+      .send(
+        "service_161k4x9",    
+        "template_hrvolys",    
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        "OhMld8HU8xVW6dsNA"  
+      )
+      .then(
+        () => {
+          toast.success("Message sent successfully ");
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error) => {
+          console.error(error);
+         toast.error("Failed to send ❌");
+        }
+      );
+  };
+
   return (
     <main className="min-h-screen bg-black text-[#EDEDED]">
 
-      {/* ───────── HERO ───────── */}
+      {/* HERO */}
       <div className="grid grid-cols-1 md:grid-cols-2 px-6 md:px-20 py-32 items-center gap-16">
 
         {/* LEFT */}
@@ -27,45 +68,39 @@ export default function BookCallPage() {
 
           <div className="flex justify-center md:justify-start gap-4 mt-16">
 
- <button
-  onClick={() => {
-    setView("booking");
+            <button
+              onClick={() => {
+                setView("booking");
+                setTimeout(() => {
+                  document.getElementById("booking-section")?.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              }}
+              className={`px-6 py-3 rounded-xl transition ${
+                view === "booking"
+                  ? "bg-white text-black"
+                  : "border border-white/20 hover:bg-white/10"
+              }`}
+            >
+              📞 Book a Call
+            </button>
 
-    setTimeout(() => {
-      document
-        .getElementById("booking-section")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }}
-  className={`px-6 py-3 rounded-xl transition ${
-    view === "booking"
-      ? "bg-white text-black"
-      : "border border-white/20 hover:bg-white/10"
-  }`}
->
-  📞 Book a Call
-</button>
+            <button
+              onClick={() => {
+                setView("contact");
+                setTimeout(() => {
+                  document.getElementById("contact-section")?.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              }}
+              className={`px-6 py-3 rounded-xl transition ${
+                view === "contact"
+                  ? "bg-white text-black"
+                  : "border border-white/20 hover:bg-white/10"
+              }`}
+            >
+              💬 Send a Message
+            </button>
 
-  <button
-  onClick={() => {
-    setView("contact");
-
-    setTimeout(() => {
-      document
-        .getElementById("contact-section")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }}
-  className={`px-6 py-3 rounded-xl transition ${
-    view === "contact"
-      ? "bg-white text-black"
-      : "border border-white/20 hover:bg-white/10"
-  }`}
->
-  💬 Send a Message
-</button>
-
-</div>
+          </div>
         </div>
 
         {/* RIGHT IMAGE */}
@@ -84,74 +119,81 @@ export default function BookCallPage() {
             </div>
           </div>
         </div>
-        </div>
+      </div>
 
-    
+      {/* CONDITIONAL SECTION */}
       {view === "booking" ? (
-  <div id="booking-section">
-    <BookingSection />
-  </div>
-) : (
-  <section
-  id="contact-section"
-  className="min-h-[70vh] flex items-center justify-center px-6 md:px-20"
->
-  <div className="w-full max-w-lg">
+        <div id="booking-section">
+          <BookingSection />
+        </div>
+      ) : (
+        <section
+          id="contact-section"
+          className="min-h-[60vh] flex items-center justify-center px-4 md:px-10"
+        >
+          <div className="w-full max-w-md">
 
-    <h2 className="text-3xl md:text-5xl font-semibold mb-4 text-center">
-      Send me a message
-    </h2>
+            <h2 className="text-2xl md:text-4xl font-semibold mb-4 text-center">
+              Send me a message
+            </h2>
 
-    <p className="text-white/50 text-center mb-8">
-      Have a question or want to work together? Drop me a message!
-    </p>
+            <p className="text-white/50 text-center mb-8">
+              Have a question or want to work together? Drop me a message!
+            </p>
 
-    <form className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
 
-      <div>
-        <label className="text-sm text-white/60">Name *</label>
-        <input
-          type="text"
-          placeholder="Your name"
-          className="w-full mt-2 p-3 bg-white/5 border border-white/10 rounded-xl outline-none"
-        />
-      </div>
+              <div>
+                <label className="text-sm text-white/60">Name *</label>
+                <input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  type="text"
+                  placeholder="Your name"
+                  className="w-full mt-1.5 p-2.5 text-sm bg-white/5 border border-white/10 rounded-lg outline-none"
+                />
+              </div>
 
-      <div>
-        <label className="text-sm text-white/60">Email *</label>
-        <input
-          type="email"
-          placeholder="your@email.com"
-          className="w-full mt-2 p-3 bg-white/5 border border-white/10 rounded-xl outline-none"
-        />
-      </div>
+              <div>
+                <label className="text-sm text-white/60">Email *</label>
+                <input
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  type="email"
+                  placeholder="your@email.com"
+                  className="w-full mt-2 p-3 bg-white/5 border border-white/10 rounded-xl outline-none"
+                />
+              </div>
 
-      <div>
-        <label className="text-sm text-white/60">Message *</label>
-        <textarea
-          rows={5}
-          placeholder="What would you like to discuss?"
-          className="w-full mt-2 p-3 bg-white/5 border border-white/10 rounded-xl outline-none"
-        />
-      </div>
+              <div>
+                <label className="text-sm text-white/60">Message *</label>
+                <textarea
+  name="message"
+  value={formData.message}
+  onChange={handleChange}
+  rows={3}
+  placeholder="What would you like to discuss?"
+  className="w-full mt-1.5 p-2.5 text-sm bg-white/5 border border-white/10 rounded-lg outline-none resize-none"
+/>
+              </div>
 
-      <button
-        type="submit"
-        className="w-full py-3 bg-white text-black rounded-xl hover:scale-[1.02] transition"
-      >
-         Send Message
-      </button>
+              <button
+                type="submit"
+                className="w-full py-2.5 bg-white text-black rounded-lg text-sm hover:scale-[1.02] transition"
+              >
+                Send Message
+              </button>
 
-    </form>
+            </form>
 
-  </div>
-</section>
-)}
- <BehindSection />
-  <HeroSection2/>
-     
+          </div>
+        </section>
+      )}
 
-      
+      <BehindSection />
+      <HeroSection2 />
 
     </main>
   );

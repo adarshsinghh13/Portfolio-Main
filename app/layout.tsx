@@ -3,7 +3,8 @@ import { Inter, Playfair_Display, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import TopLeft from "./components/TopLeft";
-import Providers from "./providers"; // 👈 ADD THIS
+import Providers from "./providers";
+import { Toaster } from "react-hot-toast";
 
 /* FONTS */
 const dancing = Dancing_Script({
@@ -24,7 +25,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Adarsh Portfolio",
+  title: "Adarsh Singh - Developer, Freelancer",
   description: "Modern developer portfolio",
 };
 
@@ -43,15 +44,16 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css"
           rel="stylesheet"
         />
-        
       </head>
-      
 
       <body className={`${inter.className} ${dancing.variable} bg-black text-white`}>
-        <Providers> {/* 👈 WRAP EVERYTHING */}
+        <Providers>
           <Navbar />
           <TopLeft />
           {children}
+
+          {/* ✅ TOASTER HERE */}
+          <Toaster position="top-right" />
         </Providers>
       </body>
     </html>
